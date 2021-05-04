@@ -13,7 +13,8 @@ module.exports = {
             const token = bearer.split(" ")[1]
             try{
                 const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
-                req.decodedToken = decodedToken; next();
+                req.decodedToken = decodedToken; 
+                next();
             }
             catch(error){
                 res.status(401).send({

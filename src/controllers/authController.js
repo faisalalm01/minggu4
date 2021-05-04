@@ -46,6 +46,7 @@ module.exports={
 
             })
         }
+        console.log("cek" + findUser);
         const isValidPassword = bcrypt.compareSync(
             body.password,
             findUser.dataValues.password
