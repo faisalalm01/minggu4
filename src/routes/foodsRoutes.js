@@ -3,13 +3,17 @@ const foodsControllers = require("../controllers/foodsControllers")
 const authMiddleware = require("../helpers/authMiddleware");
 
 foodsRoutes.get("/", 
-authMiddleware.checkLogin,
+// authMiddleware.checkLogin,
 foodsControllers.getAllFoods);
 foodsRoutes.post("/",
-// authMiddleware.checkLogin, 
+  authMiddleware.checkLogin, 
 foodsControllers.postFoods);
 foodsRoutes.get("/:id",foodsControllers.getDataById);
-foodsRoutes.delete("/:id",foodsControllers.deleteDataById);
-foodsRoutes.put("/:id",foodsControllers.putDataById);
+foodsRoutes.delete("/:id",            
+  authMiddleware.checkLogin, 
+foodsControllers.deleteDataById);
+foodsRoutes.put("/:id",
+  authMiddleware.checkLogin,
+foodsControllers.putDataById);
 
 module.exports = foodsRoutes;
